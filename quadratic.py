@@ -43,7 +43,7 @@ x_pred = 90
 print("Estimated population for 2030:", f_approx(x_pred))
 
 # plot
-x_plot = np.linspace(0, 90, 200)
+x_plot = np.linspace(0, 90, 300)
 y_plot = f_approx(x_plot)
 
 plt.scatter(x, y, label="Actual data", color='black')
