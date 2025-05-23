@@ -119,7 +119,7 @@ predictions = {
     "Geometric": f_geom(x_2030)
 }
 
-# calculate sse for each model
+# calculate sse for each model (the numerator of the formula)
 sse = {
     "Linear": np.sum((y - f_lin(x_original))**2),
     "Quadratic": np.sum((y - f_quad(x_original))**2),
@@ -128,9 +128,6 @@ sse = {
     "Hyperbolic": np.sum((y - f_hip(x_original))**2),
     "Geometric": np.sum((y - f_geom(x_original))**2)
 }
-
-# find best model (lowest sse)
-best_model = min(sse.items(), key=lambda x: x[1])[0]
 
 print("\npredictions for 2030 (90 years since 1940):")
 print("-" * 50)
@@ -142,7 +139,24 @@ print("-" * 50)
 for model, error in sse.items():
     print(f"{model:12} → {error:,.2e}")
 
-print(f"\nbest model: {best_model} (lowest sse)")
+
+# caculate the TSS (total sum of squares) for each model (the denominator of the formula)
+tss_value = np.sum((y - np.mean(y))**2)
+
+print("\ntotal sum of squares (tss):", tss_value)
+
+#calculate the r2 for each model (the numerator of the formula)
+r2 = {model: 1 - sse[model]/tss_value for model in sse}
+
+print("\nR² for each model:")
+print("-" * 50)
+for model, r in r2.items():
+    print(f"{model:12} → {r:.4f}")
+
+print("\nbest model:")
+print("-" * 50)
+best_model = max(r2, key=r2.get)
+print(f"{best_model:12} → {r2[best_model]:.4f}")
 
 # -------------------- plot --------------------
 x_plot = np.linspace(0, 90, 300)
