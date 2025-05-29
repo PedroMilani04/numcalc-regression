@@ -1,6 +1,6 @@
 # Population Forecast with Least Squares Regression
 
-This project applies multiple regression models using the **Least Squares Method** to fit population data and forecast future values. Various models—Linear, Quadratic, Cubic, Exponential, Hyperbolic, and Geometric—are compared based on their error and accuracy (R²) to determine the best fit.
+This project applies multiple regression models using the **Least Squares Method** to fit population data from Presidente Prudente, in São Paulo, Brazil, and forecast future values. Various models—Linear, Quadratic, Cubic, Exponential, Hyperbolic, and Geometric—are compared based on their error and accuracy (R²) to determine the best fit.
 
 ---
 
